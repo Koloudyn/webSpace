@@ -1,0 +1,380 @@
+
+<html lang="ru">
+  <head>
+    <title>Table</title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <script src="http://d3js.org/d3.v7.min.js"></script>
+  </head>
+  <body>
+    <div class="center">
+      <div class="menu"><a href="index.html">Main page</a></div>
+      <div class="menu"><a href="gallery.html">Gallery</a></div>
+      <div class="selected menu"><a href="table.html">Table</a></div>
+    </div>
+    <div class="main">
+      <div class="grid-container grid-container-for-table">
+        <div class="topic1 block">
+          <div class="text">
+            <p>
+              The observable universe contains an estimated 10 <sup> 22 </sup>  to 10 <sup> 24 </sup>  stars. Only about 4,000 of these stars are visible
+              to the naked eye, all within the Milky Way galaxy.
+            </p>
+            <p>  Astronomers often group stars by their mass:</p>
+            <ul>
+              <li> Very low mass stars, with masses below 0.5 M☉.</li>
+              <li> Low mass stars (including the Sun), with a mass between 0.5 M☉ and ~2.25 M☉.</li>
+              <li> Intermediate-mass stars, between ~2.25 M☉ and ~8 M☉.</li>
+              <li> Massive stars generally have a minimum mass of ~8 M☉.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="topic2 block">
+          <div class="parameters">
+            <details>
+              <summary>Diagram</summary>
+              <form>
+                <table>
+                  <tr>
+                    <th> OX value</th>
+                    <th> OY value</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="radio" name="ox" value="Spectral Type" checked/><span>Spectral class</span>
+                    </td>
+                    <td>
+                      <input type="radio" name="oy" value="Abs Magnitude" checked/><span>Absolute stellar luminosity</span>
+                    </td>
+                  </tr>
+                </table>
+                <div class="center-text">
+                  <input type="button" value="Make" id="makeGraph"/>
+                </div>
+              </form>
+            </details>
+            <details>
+              <summary>Filter</summary>
+              <form>
+                <div>
+                  <label> Name:</label>
+                  <input type="text" id="starName"/>
+                </div>
+                <div>
+                  <label>   Absolute stellar luminosity:</label><br><span>from</span>
+                  <input type="text" id="starStellarFrom"/><span>to</span>
+                  <input type="text" id="starStellarTo"/>
+                </div>
+                <div>
+                  <label>   Spectral class:</label>
+                  <input type="text" id="starClass"/>
+                </div>
+                <div class="center-text">
+                  <input type="button" id="buttonFilter" value="Search"/>
+                </div>
+              </form>
+            </details>
+            <details>
+              <summary>Sorting</summary>
+              <form>
+                <div><span>  First:</span>
+                  <select id="sortFirst">
+                    <option value="0">  None</option>
+                    <option value="1">  Common name</option>
+                    <option value="2">  Abs Magnitude</option>
+                    <option value="3">  Spectral Type</option>
+                  </select><br><span>  descending?</span>
+                  <input type="checkbox" id="descFirst"/>
+                </div>
+                <div><span>  Second:</span>
+                  <select id="sortSecond">
+                    <option value="0">  None</option>
+                    <option value="1">  Common name</option>
+                    <option value="2">  Abs Magnitude</option>
+                    <option value="3">  Spectral Type</option>
+                  </select><br><span>descending?</span>
+                  <input type="checkbox" id="descSecond"/>
+                </div>
+                <div><span>  Third:</span>
+                  <select id="sortThird">
+                    <option value="0">  None</option>
+                    <option value="1">  Common name</option>
+                    <option value="2">  Abs Magnitude</option>
+                    <option value="3">  Spectral Type</option>
+                  </select><br><span>  descending?</span>
+                  <input type="checkbox" id="descThird"/>
+                </div>
+                <div class="center-text">
+                  <input type="button" id="buttonSorting" value="Sorting"/>
+                </div>
+              </form>
+            </details>
+          </div>
+        </div>
+        <div class="topic3 topic3-background-for-table block">
+          <div class="graph">
+            <svg></svg>
+          </div>
+          <table class="stars" id="tableOfStars">
+            <tr>
+              <th>Common name</th>
+              <th>Abs Magnitude</th>
+              <th>Spectral Type</th>
+            </tr>
+            <tr>
+              <td>Proxima Centauri</td>
+              <td>  15.45</td>
+              <td>M5Ve</td>
+            </tr>
+            <tr>
+              <td>Centauri B</td>
+              <td>   5.70</td>
+              <td>K1V</td>
+            </tr>
+            <tr>
+              <td>      Rigel Kentaurus</td>
+              <td>   4.34</td>
+              <td>G2V</td>
+            </tr>
+            <tr>
+              <td>       Barnard's Star</td>
+              <td>  13.24</td>
+              <td>M4</td>
+            </tr>
+            <tr>
+              <td>          Sirius A</td>
+              <td>   1.45</td>
+              <td>A0m</td>
+            </tr>
+            <tr>
+              <td>          Ross 154</td>
+              <td>  13.00</td>
+              <td>M3.5Ve</td>
+            </tr>
+            <tr>
+              <td>Eridani</td>
+              <td>   6.18</td>
+              <td>K2V</td>
+            </tr>
+            <tr>
+              <td>       Lacaille 9352</td>
+              <td>   9.76</td>
+              <td>M2/M3V</td>
+            </tr>
+            <tr>
+              <td>         61 Cygni A</td>
+              <td>   7.49</td>
+              <td>K5V</td>
+            </tr>
+            <tr>
+              <td>          Procyon</td>
+              <td>   2.68</td>
+              <td>F5IV-V</td>
+            </tr>
+            <tr>
+              <td>         61 Cygni B</td>
+              <td>   8.33</td>
+              <td>K7V</td>
+            </tr>
+            <tr>
+              <td>       GX Andromedae</td>
+              <td>  10.33</td>
+              <td>M1V</td>
+            </tr>
+            <tr>
+              <td>Indi</td>
+              <td>   6.89</td>
+              <td>K5V</td>
+            </tr>
+            <tr>
+              <td>Ceti</td>
+              <td>   5.68</td>
+              <td>G8V</td>
+            </tr>
+            <tr>
+              <td>          YZ Ceti</td>
+              <td>  14.25</td>
+              <td>M5.5Ve</td>
+            </tr>
+            <tr>
+              <td>       Luyten's Star</td>
+              <td>  11.94</td>
+              <td>M5</td>
+            </tr>
+            <tr>
+              <td>       Kapteyn's Star</td>
+              <td>  10.89</td>
+              <td>M0V</td>
+            </tr>
+            <tr>
+              <td>       AX Microscopii</td>
+              <td>   8.71 </td>
+                <td>M1/M2V</td>
+            </tr>
+            <tr>
+              <td>         Wolf 1061</td>
+              <td>  11.95</td>
+              <td>M4</td>
+            </tr>
+            <tr>
+              <td>     van Maanen's Star</td>
+              <td>  14.15</td>
+              <td>DG</td>
+            </tr>
+            <tr>
+              <td>   IL Aquarii or Ross 780</td>
+              <td>  11.80</td>
+              <td>M5</td>
+            </tr>
+            <tr>
+              <td>      Furuhjelm I- 650</td>
+              <td>  10.40</td>
+              <td>M2Vvar</td>
+            </tr>
+            <tr>
+              <td>Eridani A</td>
+              <td>   5.92</td>
+              <td>K1V</td>
+            </tr>
+            <tr>
+              <td>        EV Lacertae</td>
+              <td>  11.77</td>
+              <td>M4.5Ve</td>
+            </tr>
+            <tr>
+              <td>       70 Ophiuchi A</td>
+              <td>   5.50</td>
+              <td>K0V SB</td>
+            </tr>
+            <tr>
+              <td>           Altair</td>
+              <td>   2.20 </td>
+                <td>A7IV-V</td>
+            </tr>
+            <tr>
+              <td>      EE Leo or Wolf 358</td>
+              <td>  12.89</td>
+              <td>M4</td>
+            </tr>
+            <tr>
+              <td>         Wolf 1453</td>
+              <td>   9.19</td>
+              <td>M1V</td>
+            </tr>
+            <tr>
+              <td>          Wolf 630</td>
+              <td>  10.23</td>
+              <td>M3Ve</td>
+            </tr>
+            <tr>
+              <td>Draconis</td>
+              <td>   5.87</td>
+              <td>K0V</td>
+            </tr>
+            <tr>
+              <td>Cassiopei or Wolf 24</td>
+              <td>   4.59</td>
+              <td>G0V SB</td>
+            </tr>
+            <tr>
+              <td>       36 Ophiuchi C</td>
+              <td>   7.45</td>
+              <td>K5V</td>
+            </tr>
+            <tr>
+              <td>         BR Piscium</td>
+              <td>  10.10</td>
+              <td>M2V</td>
+            </tr>
+            <tr>
+              <td>        36 Ophiuchi</td>
+              <td>   5.44</td>
+              <td>K2</td>
+            </tr>
+            <tr>
+              <td>         82 Eridani</td>
+              <td>   5.35</td>
+              <td>G8V</td>
+            </tr>
+            <tr>
+              <td>Pavonis</td>
+              <td>   4.62</td>
+              <td>G5IV-Vvar</td>
+            </tr>
+            <tr>
+              <td>         Wolf 1481</td>
+              <td>  12.39</td>
+              <td>M4</td>
+            </tr>
+            <tr>
+              <td>         EQ Pegasi</td>
+              <td>  11.07</td>
+              <td>M6Ve</td>
+            </tr>
+            <tr>
+              <td>   HO Librae or Wolf 562</td>
+              <td>  11.58</td>
+              <td>M5</td>
+            </tr>
+            <tr>
+              <td>   QY Aurigae or Ross 986</td>
+              <td>  12.63</td>
+              <td>M5Ve</td>
+            </tr>
+            <tr>
+              <td>          Wolf 629</td>
+              <td>  12.67</td>
+              <td>M4</td>
+            </tr>
+            <tr>
+              <td>          Ross 104</td>
+              <td>  10.92</td>
+              <td>M3</td>
+            </tr>
+            <tr>
+              <td>         37 Bootis</td>
+              <td>   5.41</td>
+              <td>G8V + K4V</td>
+            </tr>
+            <tr>
+              <td>          Ross 775</td>
+              <td>  11.19</td>
+              <td>M4</td>
+            </tr>
+            <tr>
+              <td>          Wolf 25</td>
+              <td>   6.38</td>
+              <td>K2V</td>
+            </tr>
+            <tr>
+              <td>        107 Piscium</td>
+              <td>   5.87</td>
+              <td>K1V</td>
+            </tr>
+            <tr>
+              <td>   VX Arietis or Ross 556</td>
+              <td>  11.16</td>
+              <td>M3.5Ve</td>
+            </tr>
+            <tr>
+              <td>Hydri</td>
+              <td>   3.45</td>
+              <td>G2IV</td>
+            </tr>
+            <tr>
+              <td>Cassiopei A</td>
+              <td>   5.78</td>
+              <td>G5Vp</td>
+            </tr>
+            <tr>
+              <td>          Ross 490</td>
+              <td>   9.64</td>
+              <td>M1V</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="js/script.js"></script>
+    <script src="js/graph.js"></script>
+  </body>
+</html>
