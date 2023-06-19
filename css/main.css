@@ -1,5 +1,5 @@
 body {
-  background-image: url("/img/background.png");
+  background-image: url(../img/background.png);
   font: 15px STXihei;
   color: #000;
 }
@@ -71,7 +71,7 @@ body {
   grid-area: topic3;
 }
 .grid-container .topic3-background-for-table {
-  background-image: url("/img/elegant-gold-stars-1.jpg");
+  background-image: url(../img/elegant-gold-stars-1.jpg);
 }
 .grid-container .topic4 {
   grid-area: topic4;
