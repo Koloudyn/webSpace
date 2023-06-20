@@ -98,6 +98,7 @@ body {
 }
 .image-with-text-for-topic1 {
   width: 40%;
+  float: left;
 }
 .image-with-text-for-topic2-and-topic4 {
   height: 40%;
@@ -131,6 +132,7 @@ body {
 }
 .text-for-topic1-and-topic5 {
   width: 60%;
+  float: right;
 }
 .text p {
   padding: 5px 10px;
